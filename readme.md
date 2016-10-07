@@ -1,5 +1,5 @@
 # LetsRest
-HttpClient wrapper for Restful API aiming for making things easier
+HttpClient wrapper for Restful API aiming to make things easier
 
 ## NOTE: this project is still under development. Do not use it for production yet.
 
