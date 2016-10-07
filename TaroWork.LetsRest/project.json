@@ -1,0 +1,20 @@
+﻿{
+  "dependencies": {
+  },
+  "frameworks": {
+    "net45": {
+      "dependencies": {
+        "Newtonsoft.Json": "7.0.1",
+        "System.Net.Http": "4.0.0"
+      }
+    },
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Newtonsoft.Json": "9.0.1",
+        "System.Net.Http": "4.1.0",
+        "System.Runtime.InteropServices": "4.1.0"
+      }
+    }
+  },
+  "version": "0.1.0"
+}
