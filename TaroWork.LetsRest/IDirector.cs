@@ -1,15 +1,29 @@
-﻿using System.Threading.Tasks;
-
-namespace TaroWork.LetsRest
+﻿namespace TaroWork.LetsRest
 {
     public interface IDirector
     {
-        IActor Get(object payload = null);
+        IActor Get();
 
-        IActor Post(object payload = null);
+        IActor Post();
 
-        IActor Put(object payload = null);
+        IActor Put();
 
-        IActor Delete(object payload = null);
+        IActor Delete();
+
+        IActor GetAstring(string payload);
+
+        IActor PostAstring(string payload);
+
+        IActor PutAstring(string payload);
+
+        IActor DeleteAstring(string payload);
+
+        IActor GetAsJson<T>(T payload);
+
+        IActor PostAsJson<T>(T payload);
+
+        IActor PutAsJson<T>(T payload);
+
+        IActor DeleteAsJson<T>(T payload);
     }
 }

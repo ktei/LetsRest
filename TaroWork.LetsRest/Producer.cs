@@ -15,7 +15,7 @@ namespace TaroWork.LetsRest
             Endpoint = endpoint;
         }
 
-        public IProducer WithAuthToken(string token)
+        public IProducer WithOAuthBearerToken(string token)
         {
             AuthToken = token;
             return this;
@@ -27,24 +27,9 @@ namespace TaroWork.LetsRest
             return this;
         }
 
-        public IActor Get(object payload = null)
+        public IDirector Then()
         {
-            return new Director(this).Get(payload);
-        }
-
-        public IActor Post(object payload = null)
-        {
-            return new Director(this).Post(payload);
-        }
-
-        public IActor Put(object payload = null)
-        {
-            return new Director(this).Put(payload);
-        }
-
-        public IActor Delete(object payload = null)
-        {
-            return new Director(this).Delete(payload);
+            return new Director(this);
         }
     }
 }

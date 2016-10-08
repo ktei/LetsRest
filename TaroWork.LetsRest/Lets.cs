@@ -1,8 +1,8 @@
 ﻿namespace TaroWork.LetsRest
 {
-    public static class Rest
+    public static class Lets
     {
-        public static IProducer For(string endpoint)
+        public static IProducer Call(string endpoint)
         {
             return new Producer(endpoint);
         }

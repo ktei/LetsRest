@@ -6,14 +6,14 @@ namespace TaroWork.LetsRest
 {
     public interface IActor
     {
-        Task<T> Object<T>();
+        Task<T> ReceiveJson<T>();
 
-        Task<string> String();
+        Task<string> ReceiveString();
 
-        Task<Stream> Stream();
+        Task<Stream> ReceiveStream();
 
-        Task<byte[]> Bytes();
+        Task<byte[]> ReceiveBytes();
 
-        Task<HttpResponseMessage> Response();
+        Task<HttpResponseMessage> ReceiveResponse();
     }
 }

@@ -6,48 +6,102 @@ namespace TaroWork.LetsRest
 {
     internal class Director : IDirector
     {
-        private readonly Producer _producer;
+        internal Producer Producer { get; private set; }
 
-        internal HttpMethod Method { get; private set; }
-
-        internal object Payload { get; set; }
+        internal HttpRequestMessage Request { get; private set; }
 
         public Director(Producer producer)
         {
-            _producer = producer;
+            Producer = producer;
         }
 
-        public IActor Delete(object payload = null)
+        public IActor Get()
         {
-            return Direct(HttpMethod.Delete, payload);
+            return CreateActorWithoutPayload(HttpMethod.Get);
         }
 
-        public IActor Get(object payload = null)
+        public IActor Post()
         {
-            return Direct(HttpMethod.Get, payload);
+            return CreateActorWithoutPayload(HttpMethod.Post);
         }
 
-        public IActor Post(object payload = null)
+        public IActor Put()
         {
-            return Direct(HttpMethod.Post, payload);
+            return CreateActorWithoutPayload(HttpMethod.Put);
         }
 
-        public IActor Put(object payload = null)
+        public IActor Delete()
         {
-            return Direct(HttpMethod.Put, payload);
+            return CreateActorWithoutPayload(HttpMethod.Delete);
         }
 
-        private IActor Direct(HttpMethod method, object payload = null)
+        private IActor CreateActorWithoutPayload(HttpMethod method)
         {
-            var request = new HttpRequestMessage(method, _producer.Endpoint);
-            if (payload != null)
-            {
-                request.Content = new StringContent(JsonConvert.SerializeObject(payload));
-                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            }
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Request = CreateRequest(method, null);
+            return new Actor(this);
+        }
 
-            return new Actor(_producer, request);
+        public IActor GetAstring(string payload)
+        {
+            return CreateActorAsString(HttpMethod.Get, payload);
+        }
+
+        public IActor PostAstring(string payload)
+        {
+            return CreateActorAsString(HttpMethod.Post, payload);
+        }
+
+        public IActor PutAstring(string payload)
+        {
+            return CreateActorAsString(HttpMethod.Put, payload);
+        }
+
+
+        public IActor DeleteAstring(string payload)
+        {
+            return CreateActorAsString(HttpMethod.Delete, payload);
+        }
+
+        private IActor CreateActorAsString(HttpMethod method, string payload)
+        {
+            Request = CreateRequest(method, new StringContent(payload));
+            return new Actor(this);
+        }
+
+        public IActor GetAsJson<T>(T payload)
+        {
+            return CreateActorAsJson(HttpMethod.Get, payload);
+        }
+
+        public IActor PostAsJson<T>(T payload)
+        {
+            return CreateActorAsJson(HttpMethod.Post, payload);
+        }
+
+        public IActor PutAsJson<T>(T payload)
+        {
+            return CreateActorAsJson(HttpMethod.Put, payload);
+        }
+
+        public IActor DeleteAsJson<T>(T payload)
+        {
+            return CreateActorAsJson(HttpMethod.Delete, payload);
+        }
+
+        public IActor CreateActorAsJson<T>(HttpMethod method, T payload)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(payload));
+            Request = CreateRequest(method, content);
+            Request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            return new Actor(this);
+        }
+
+        private HttpRequestMessage CreateRequest(HttpMethod method, HttpContent content)
+        {
+            var request = new HttpRequestMessage(method, Producer.Endpoint);
+            request.Content = content;
+            return request;
         }
     }
 }
