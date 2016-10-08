@@ -5,7 +5,11 @@ HttpClient wrapper for Restful API aiming to make things easier
 
 ### Usage
 ```c#
-Rest.For("http://jsonplaceholder.typicode.com/posts/1")
-  .Get()
-  .String();
+Lets.Call("http://...").Then().Get().ReceiveString();
+
+Lets.Call("http://...").Then().PostAsJson().ReceiveAsJson<MyClass>();
+
+Lets.Call("http://...")
+    .WithOAuthBearerToken("mytoken")
+    .Then().PostAsJson().ReceiveAsJson<MyClass>();
 ```

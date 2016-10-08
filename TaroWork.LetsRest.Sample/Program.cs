@@ -13,6 +13,7 @@ namespace TaroWork.LetsRest.Sample
             var task = Lets.Call("http://jsonplaceholder.typicode.com/posts/1")
                 .Then().Get().ReceiveString();
             task.Wait();
+            
             var result = task.Result;
         }
     }
