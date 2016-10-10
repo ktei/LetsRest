@@ -6,5 +6,10 @@
         {
             return new Producer(endpoint);
         }
+
+        public static IProducer Call(string host, string path)
+        {
+            return new Producer(host, path);
+        }
     }
 }
