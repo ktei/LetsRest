@@ -8,6 +8,10 @@ namespace TaroWork.LetsRest
 
         IProducer WithTimeout(TimeSpan timeout);
 
+        IProducer WithTimeoutInSeconds(int seconds);
+
+        IProducer WithTimeoutInMinutes(int minutes);
+
         IDirector Then();
     }
 }
