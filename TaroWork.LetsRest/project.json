@@ -1,6 +1,8 @@
 ﻿{
-  "dependencies": {
-  },
+  "authors": [
+    "Rui Cheng (rui.cheng@infotrack.com.au)"
+  ],
+  "description": "HttpClient wrapper for Restful API aiming to make things easier",
   "frameworks": {
     "net45": {
       "dependencies": {
@@ -16,5 +18,14 @@
       }
     }
   },
-  "version": "0.2.1"
+  "language": "en-use",
+  "packOptions": {
+    "licenseUrl": "https://opensource.org/licenses/MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ktei/LetsRest"
+    },
+    "summary": "HttpClient wrapper for Restful API aiming to make things easier"
+  },
+  "version": "0.2.2"
 }

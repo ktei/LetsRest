@@ -1,7 +1,7 @@
 # LetsRest
 HttpClient wrapper for Restful API aiming to make things easier
 
-## NOTE: this project is still under development. Do not use it for production yet.
+## NOTE: This library is new baby, which only has limited features. 
 
 ### Usage
 ```c#
